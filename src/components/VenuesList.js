@@ -20,9 +20,9 @@ class VenuesList extends Component {
                 <div className="list-content">
                     <div>
                     {
-                        venues.map((venue) => {
+                        venues.map((venue, index) => {
                             return (
-                                <Venue venue= { venue } key={ venue.id } onVenueClicked={ this.props.onVenueClicked } displayMarkerForVenue={ this.props.displayMarkerForVenue } />
+                                <Venue venue= { venue } key={ venue.id } tabindex={ index + 2 } onVenueClicked={ this.props.onVenueClicked } displayMarkerForVenue={ this.props.displayMarkerForVenue } />
                             )
                         })
                     }

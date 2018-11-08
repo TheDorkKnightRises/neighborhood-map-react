@@ -5,7 +5,8 @@ class Venue extends Component {
     static propTypes = {
         venue: PropTypes.object.isRequired,
         onVenueClicked: PropTypes.func.isRequired,
-        displayMarkerForVenue: PropTypes.func.isRequired
+        displayMarkerForVenue: PropTypes.func.isRequired,
+        tabindex: PropTypes.string.isRequired
     }
 
     render() {
@@ -14,7 +15,7 @@ class Venue extends Component {
         this.props.displayMarkerForVenue(venue)
 
         return (
-            <button className="venue material-button ripple" onClick={ () => this.props.onVenueClicked(venue)}>
+            <button className="venue material-button ripple" tabIndex={ this.props.tabindex } onClick={ () => this.props.onVenueClicked(venue)}>
                 { venue.name }
             </button>
         )

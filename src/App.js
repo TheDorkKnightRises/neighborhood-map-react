@@ -72,7 +72,6 @@ class App extends Component {
 
         fetch('https://api.foursquare.com/v2/venues/search?client_id=' + FOURSQUARE_CLIENT_ID + '&client_secret=' + process.env.REACT_APP_FOURSQUARE_API_KEY + '&v=20180323&ll=40.7588542,-73.9855998&limit=10')
             .then((response) => response.json()).then((data) => {
-                console.log(data.response)
                 let venues = data.response.venues
                 if (venues.length > 0) {
                     venues.forEach((venue) => {
@@ -110,7 +109,7 @@ class App extends Component {
         } else {
             return (
                 <div className="popup">
-                    <button className="close" onClick={ this.resetSelectedVenue }>Close</button>
+                    <button className="close" tabIndex="12" onClick={ this.resetSelectedVenue }>Close</button>
                     <div className="container">
                         <h3>{ this.state.selectedVenue.name }</h3>
                         <h4>{ this.state.selectedVenue.categories[0].name }</h4>

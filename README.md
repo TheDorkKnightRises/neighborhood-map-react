@@ -6,7 +6,7 @@ A React web app that shows the map of a neighborhood and suggests points of inte
 
 Fourquare Places API requires an API key. Create a `.env.local` file in the project root directory and add your Fourquare API key (client secret key)
 
-### `REACT_APP_FOURSQUARE_API_KEY=<your key>`
+`REACT_APP_FOURSQUARE_API_KEY=<your key>`
 
 In the project directory, run:
 
