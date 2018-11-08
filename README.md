@@ -10,15 +10,15 @@ Fourquare Places API requires an API key. Create a `.env.local` file in the proj
 
 In the project directory, run:
 
-### `npm start`
+`npm start`
 
-Runs the app in the development mode.<br>
+This runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
-## Notes
+## Notices
 
 - This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 - This project makes use of [MapBox API](https://www.mapbox.com/)
