@@ -101,8 +101,8 @@ body {
 .popup .close {
     float: right;
     border: none;
-    width: 24px;
-    height: 24px;
+    width: 48px;
+    height: 48px;
     background: white;
     background-image: url('./icons/close.svg');
     background-position: center;
