@@ -204,7 +204,7 @@ class App extends Component {
         return (
             <div className="app">
                 <this.PopUpArea venue={ this.state.selectedVenue } errors={ this.state.errors }/>
-                <div ref={el => this.mapContainer = el} className="map" />
+                <div ref={el => this.mapContainer = el} className="map" role="application" />
                 <VenuesList venues={ this.state.shownVenues } onVenueClicked={ this.onVenueClicked } onFilterValueChange={ this.onFilterValueChange } />
             </div>
         );
