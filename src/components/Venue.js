@@ -6,7 +6,7 @@ class Venue extends Component {
         venue: PropTypes.object.isRequired,
         onVenueClicked: PropTypes.func.isRequired,
         displayMarkerForVenue: PropTypes.func.isRequired,
-        tabindex: PropTypes.string.isRequired
+        tabindex: PropTypes.number.isRequired
     }
 
     render() {

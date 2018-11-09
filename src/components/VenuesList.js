@@ -27,8 +27,9 @@ class VenuesList extends Component {
                         })
                     }
                     </div>
-                </div>
-                <div className="open-search">
+                    <div>
+                        <p className="center"> Data provided by Fourquare </p>
+                    </div>
                 </div>
             </div>
         )

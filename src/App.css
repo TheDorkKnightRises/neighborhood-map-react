@@ -39,7 +39,7 @@ body {
 
 .list-title {
   padding: 10px;
-  background: #209aa4;
+  background: #369;
   text-align: center;
 }
 .list-title h1 {
@@ -55,6 +55,15 @@ body {
 
 .container {
     padding: 10px;
+}
+
+.center {
+    text-align: center;
+    vertical-align: bottom;
+    bottom: 0px;
+    padding: 4px;
+    margin: 8px;
+    color: #999
 }
 
 .popup {

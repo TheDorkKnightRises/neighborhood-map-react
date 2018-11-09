@@ -104,7 +104,9 @@ class App extends Component {
     }
 
     VenueDetails = (props) => {
+        // Function to return the div for showing venue details
         if (props.venue == null) {
+            // Return empty div
             return <div></div>
         } else {
             return (
@@ -123,10 +125,11 @@ class App extends Component {
     resetSelectedVenue = () => {
         if (this.state.selectedVenue != null) {
             const venue = this.state.selectedVenue
+
             // Remove old marker
             venue.marker.remove()
 
-            // Add new marker with class 'marker-selected'
+            // Add new marker with class 'marker'
             var el = document.createElement('div');
             el.className = 'marker';
             el.addEventListener('click', () =>
@@ -139,6 +142,7 @@ class App extends Component {
                 .addTo(map)
             venue.marker = marker
 
+            // Reset selectedVenue
             this.setState({
                 selectedVenue: null
             })
@@ -148,8 +152,7 @@ class App extends Component {
     render() {
         return (
             <div className="app">
-                <this.VenueDetails venue={ this.state.selectedVenue }/>
-
+                <this.VenueDetails venue={ this.state.selectedVenue } />
                 <div ref={el => this.mapContainer = el} className="map" />
                 <VenuesList venues={ this.state.shownVenues } onVenueClicked={ this.onVenueClicked } displayMarkerForVenue={ this.displayMarkerForVenue } />
             </div>
