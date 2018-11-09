@@ -6,7 +6,7 @@ class VenuesList extends Component {
     static propTypes = {
         venues: PropTypes.array.isRequired,
         onVenueClicked: PropTypes.func.isRequired,
-        displayMarkerForVenue: PropTypes.func.isRequired
+        onFilterValueChange: PropTypes.func.isRequired
     }
 
     render() {
@@ -19,13 +19,13 @@ class VenuesList extends Component {
                 </div>
                 <div className="list-content">
                     <div className="search-bar">
-                        <input type="text" tabindex="1" className="ripple" placeholder="Filter locations by name" />
+                        <input type="text" tabIndex="1" className="ripple" placeholder="Filter locations by name" onChange={ this.props.onFilterValueChange } />
                     </div>
                     <div>
                     {
                         venues.map((venue, index) => {
                             return (
-                                <Venue venue= { venue } key={ venue.id } tabindex={ index + 1 } onVenueClicked={ this.props.onVenueClicked } displayMarkerForVenue={ this.props.displayMarkerForVenue } />
+                                <Venue venue= { venue } key={ venue.id } tabindex={ index + 1 } onVenueClicked={ this.props.onVenueClicked } />
                             )
                         })
                     }

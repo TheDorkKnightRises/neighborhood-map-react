@@ -16,11 +16,6 @@ class App extends Component {
         query: ''
     }
 
-    showError = (errorMessage) => {
-        // TODO: Implement better way to show error messages
-        alert(errorMessage)
-    }
-
     onVenueClicked = (venue) => {
         this.resetSelectedVenue()
 
@@ -51,7 +46,6 @@ class App extends Component {
         });
     }
 
-
     resetSelectedVenue = () => {
         if (this.state.selectedVenue != null) {
             const venue = this.state.selectedVenue
@@ -79,10 +73,23 @@ class App extends Component {
         }
     }
 
-    displayMarkerForVenue = (venue) => {
-        venue.marker.addTo(map)
+    onFilterValueChange = (e) => {
+        this.resetSelectedVenue()
+        const queryText = e.target.value
+        this.setState(() => {
+            return { query: queryText.toString() }
+        })
+        if (queryText.length > 0) {
+            var shownVenues = this.state.venues.filter((venue) => venue.name.toLowerCase().includes(queryText.toLowerCase()))
+            this.setState(() => {
+                return { shownVenues }
+            })
+        } else {
+            this.setState(() => {
+                return { shownVenues: this.state.venues, query: '' }
+            })
+        }
     }
-
 
     componentDidMount() {
         // Set bounds to New York, New York
@@ -123,11 +130,12 @@ class App extends Component {
                         query: ''
                     })
                 } else {
-                    this.showError('Error fetching locations from Foursquare API')
+                    // TODO: Implement better way to show error messages
+                    alert('Error fetching locations from Foursquare API')
                 }
             })
             .catch(function(error) {
-                this.showError('Error fetching locations from Foursquare API')
+                alert('Error fetching locations from Foursquare API')
                 console.log(error)
             });
 
@@ -152,12 +160,21 @@ class App extends Component {
         }
     }
 
+    showMarkers = (shownVenues) => {
+        this.state.venues.forEach((venue) => {
+            if (shownVenues.includes(venue))
+                venue.marker.addTo(map)
+            else venue.marker.remove()
+        })
+    }
+
     render() {
+        this.showMarkers(this.state.shownVenues)
         return (
             <div className="app">
                 <this.VenueDetails venue={ this.state.selectedVenue } />
                 <div ref={el => this.mapContainer = el} className="map" />
-                <VenuesList venues={ this.state.shownVenues } onVenueClicked={ this.onVenueClicked } displayMarkerForVenue={ this.displayMarkerForVenue } />
+                <VenuesList venues={ this.state.shownVenues } onVenueClicked={ this.onVenueClicked } onFilterValueChange={ this.onFilterValueChange } />
             </div>
         );
     }
