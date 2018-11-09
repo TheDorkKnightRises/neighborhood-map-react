@@ -18,11 +18,14 @@ class VenuesList extends Component {
                   <h1>Places of Interest</h1>
                 </div>
                 <div className="list-content">
+                    <div className="search-bar">
+                        <input type="text" tabindex="1" className="ripple" placeholder="Filter locations by name" />
+                    </div>
                     <div>
                     {
                         venues.map((venue, index) => {
                             return (
-                                <Venue venue= { venue } key={ venue.id } tabindex={ index + 2 } onVenueClicked={ this.props.onVenueClicked } displayMarkerForVenue={ this.props.displayMarkerForVenue } />
+                                <Venue venue= { venue } key={ venue.id } tabindex={ index + 1 } onVenueClicked={ this.props.onVenueClicked } displayMarkerForVenue={ this.props.displayMarkerForVenue } />
                             )
                         })
                     }

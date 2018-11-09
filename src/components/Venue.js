@@ -15,7 +15,7 @@ class Venue extends Component {
         this.props.displayMarkerForVenue(venue)
 
         return (
-            <button className="venue material-button ripple" tabIndex={ this.props.tabindex } onClick={ () => this.props.onVenueClicked(venue)}>
+            <button className="list-item material-button ripple" tabIndex={ this.props.tabindex } onClick={ () => this.props.onVenueClicked(venue)}>
                 { venue.name }
             </button>
         )

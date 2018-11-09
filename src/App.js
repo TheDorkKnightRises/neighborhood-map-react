@@ -51,9 +51,38 @@ class App extends Component {
         });
     }
 
+
+    resetSelectedVenue = () => {
+        if (this.state.selectedVenue != null) {
+            const venue = this.state.selectedVenue
+
+            // Remove old marker
+            venue.marker.remove()
+
+            // Add new marker with class 'marker'
+            var el = document.createElement('div');
+            el.className = 'marker';
+            el.addEventListener('click', () =>
+               {
+                  this.onVenueClicked(venue)
+               }
+            );
+            var marker = new mapboxgl.Marker(el)
+                .setLngLat([venue.location.lng, venue.location.lat])
+                .addTo(map)
+            venue.marker = marker
+
+            // Reset selectedVenue
+            this.setState({
+                selectedVenue: null
+            })
+        }
+    }
+
     displayMarkerForVenue = (venue) => {
         venue.marker.addTo(map)
     }
+
 
     componentDidMount() {
         // Set bounds to New York, New York
@@ -98,6 +127,7 @@ class App extends Component {
                 }
             })
             .catch(function(error) {
+                this.showError('Error fetching locations from Foursquare API')
                 console.log(error)
             });
 
@@ -119,33 +149,6 @@ class App extends Component {
                     </div>
                 </div>
             )
-        }
-    }
-
-    resetSelectedVenue = () => {
-        if (this.state.selectedVenue != null) {
-            const venue = this.state.selectedVenue
-
-            // Remove old marker
-            venue.marker.remove()
-
-            // Add new marker with class 'marker'
-            var el = document.createElement('div');
-            el.className = 'marker';
-            el.addEventListener('click', () =>
-               {
-                  this.onVenueClicked(venue)
-               }
-            );
-            var marker = new mapboxgl.Marker(el)
-                .setLngLat([venue.location.lng, venue.location.lat])
-                .addTo(map)
-            venue.marker = marker
-
-            // Reset selectedVenue
-            this.setState({
-                selectedVenue: null
-            })
         }
     }
 
