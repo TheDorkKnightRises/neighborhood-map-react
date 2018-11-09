@@ -1,8 +1,8 @@
 html, body, .root {
-  height: 100%;
+    height: 100%;
 }
 body {
-  background: white;
+    background: white;
 }
 
 .app {
@@ -20,37 +20,34 @@ body {
 }
 
 .marker {
-  background-image: url('./icons/marker.svg');
-  background-size: cover;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  cursor: pointer;
+    background-image: url('./icons/marker.svg');
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
 }
 
 .marker-selected {
-  background-image: url('./icons/marker-selected.svg');
-  background-size: cover;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  cursor: pointer;
+    background-image: url('./icons/marker-selected.svg');
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
 }
 
 .list-title {
-  padding: 10px;
-  background: #369;
-  text-align: center;
+    padding: 10px;
+    background: #369;
+    text-align: center;
+    font-weight: 400;
+    margin: 0;
+    color: white;
 }
-.list-title h1 {
-  font-weight: 400;
-  margin: 0;
-  color: white;
-}
-
 .list-content {
-  padding: 0 0 8px;
-  flex: 1;
+    padding: 0 0 8px;
+    flex: 1;
 }
 
 .list-item {
@@ -75,6 +72,7 @@ body {
     width: 100%;
     z-index: 99;
     background: white;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.19);
 }
 @media (min-width: 600px) {
     .popup {
@@ -115,16 +113,16 @@ body {
 
 /* Ripple effect */
 .ripple {
-  background-position: center;
-  transition: background 0.8s;
+    background-position: center;
+    transition: background 0.8s;
 }
 .ripple:hover {
-  background: #fff radial-gradient(circle, transparent 1%, #fff 1%) center/15000%;
+    background: #fff radial-gradient(circle, transparent 1%, #fff 1%) center/15000%;
 }
 .ripple:active {
-  background-color: #aaa;
-  background-size: 100%;
-  transition: background 0s;
+    background-color: #aaa;
+    background-size: 100%;
+    transition: background 0s;
 }
 
 /* Button style */
@@ -143,31 +141,18 @@ body {
 /* search */
 
 .search-bar {
-  width: 100%;
-  top: 0;
-  left: 0;
-  margin-bottom: 4px;
-  z-index: 5;
-  display: flex;
-  box-shadow: 0 0px 4px rgba(0,0,0,0.19), 0 0 6px rgba(0,0,0,0.23);
+    width: 100%;
+    top: 0;
+    left: 0;
+    margin-bottom: 4px;
+    z-index: 5;
+    display: flex;
+    box-shadow: 0 0px 4px rgba(0,0,0,0.19), 0 0 6px rgba(0,0,0,0.23);
 }
 .search-bar input {
-  width: 100%;
-  padding: 15px 10px;
-  font-size: 1.25em;
-  border: none;
-  outline: none;
-}
-.close-search {
-  display: block;
-  top: 20px;
-  left: 15px;
-  width: 50px;
-  height: 53px;
-  background: white;
-  background-image: url('./icons/close.svg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 28px;
-  font-size: 0;
+    width: 100%;
+    padding: 15px 10px;
+    font-size: 1.25em;
+    border: none;
+    outline: none;
 }

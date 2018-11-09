@@ -13,7 +13,8 @@ class App extends Component {
         venues: [],
         shownVenues: [],
         selectedVenue: null,
-        query: ''
+        query: '',
+        errors: []
     }
 
     onVenueClicked = (venue) => {
@@ -92,6 +93,8 @@ class App extends Component {
     }
 
     componentDidMount() {
+        var errors = []
+
         // Set bounds to New York, New York
         var bounds = [
             [-73.99, 40.756], // Southwest coordinates
@@ -105,6 +108,14 @@ class App extends Component {
           zoom: 17.5,
           maxBounds: bounds
         });
+
+        map.on('error', (error) => {
+            console.log(error)
+            errors.push('Error fetching map data from MapBox API')
+            this.setState({
+                errors: errors
+            })
+        })
 
         fetch('https://api.foursquare.com/v2/venues/search?client_id=' + FOURSQUARE_CLIENT_ID + '&client_secret=' + process.env.REACT_APP_FOURSQUARE_API_KEY + '&v=20180323&ll=40.7588542,-73.9855998&limit=10')
             .then((response) => response.json()).then((data) => {
@@ -130,23 +141,43 @@ class App extends Component {
                         query: ''
                     })
                 } else {
-                    // TODO: Implement better way to show error messages
-                    alert('Error fetching locations from Foursquare API')
+                    errors.push('Error fetching locations from Foursquare API')
+                    this.setState({
+                        errors: errors
+                    })
                 }
             })
-            .catch(function(error) {
-                alert('Error fetching locations from Foursquare API')
+            .catch((error) => {
                 console.log(error)
+                errors.push('Error fetching locations from Foursquare API')
+                this.setState({
+                    errors: errors
+                })
             });
 
     }
 
-    VenueDetails = (props) => {
-        // Function to return the div for showing venue details
-        if (props.venue == null) {
-            // Return empty div
+    PopUpArea = (props) => {
+        // Function to return the div for showing errors or venue details
+        if (props.errors.length > 0) {
+            // Show error messages
+            return (
+                <div className="popup">
+                    <div className="container">
+                        <ul>
+                        {
+                            props.errors.map((error, index) => <li key={index}>{error}</li>)
+                        }
+                        </ul>
+                    </div>
+                </div>
+            )
+
+        } else if (props.venue == null) {
+            // Return empty div if no errors or no venue details to show
             return <div></div>
         } else {
+            // Show venue details
             return (
                 <div className="popup">
                     <button className="close" tabIndex="12" onClick={ this.resetSelectedVenue }>Close</button>
@@ -172,7 +203,7 @@ class App extends Component {
         this.showMarkers(this.state.shownVenues)
         return (
             <div className="app">
-                <this.VenueDetails venue={ this.state.selectedVenue } />
+                <this.PopUpArea venue={ this.state.selectedVenue } errors={ this.state.errors }/>
                 <div ref={el => this.mapContainer = el} className="map" />
                 <VenuesList venues={ this.state.shownVenues } onVenueClicked={ this.onVenueClicked } onFilterValueChange={ this.onFilterValueChange } />
             </div>

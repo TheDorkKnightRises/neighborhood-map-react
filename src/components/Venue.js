@@ -12,8 +12,8 @@ class Venue extends Component {
         const venue = this.props.venue
 
         return (
-            <button className="list-item material-button ripple" tabIndex={ this.props.tabindex } onClick={ () => this.props.onVenueClicked(venue)}>
-                { venue.name }
+            <button className="list-item material-button ripple" aria-labelledby="venue-name" tabIndex={ this.props.tabindex } onClick={ () => this.props.onVenueClicked(venue)}>
+                <div id="venue-name">{ venue.name }</div>
             </button>
         )
     }

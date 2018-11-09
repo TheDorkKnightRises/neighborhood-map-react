@@ -14,9 +14,7 @@ class VenuesList extends Component {
 
         return (
             <div className="list">
-                <div className="list-title">
-                  <h1>Places of Interest</h1>
-                </div>
+                <h1 className="list-title">Places of Interest</h1>
                 <div className="list-content">
                     <div className="search-bar">
                         <input type="text" tabIndex="1" className="ripple" placeholder="Filter locations by name" onChange={ this.props.onFilterValueChange } />
